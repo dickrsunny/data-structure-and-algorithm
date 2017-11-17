@@ -74,19 +74,46 @@ class LListWithTailNode(object):
             print current.elem
             current = current._next
 
+    def reverse(self):
+        prev = None
+        current = self.head
+        while current != None:
+            next_node = current._next
+            current._next = prev
+            prev = current
+            current = next_node
+        self.head = prev
+
+    def recursive_reverse(self, head=None):
+        if head == None:
+            return
+
+        if head._next == None:
+            return head
+
+        new_head = self.recursive_reverse(head._next)
+        head._next._next = head
+        head._next = None
+        self.head = new_head
+        return new_head
+
+
 
 l = LListWithTailNode()
 l.prepend(1)
-# l.prepend(2)
-# l.prepend(3)
-# l.prepend(4)
-# l.traverse()
+l.prepend(2)
+l.prepend(3)
+l.prepend(4)
+l.prepend(5)
+l.traverse()
+print ''
+l.recursive_reverse(l.head)
+l.traverse()
 # print l.rear.elem, '\n'
 # l.append(5)
 # l.append(6)
-l.traverse()
+# l.traverse()
 # print l.rear.elem
-print l.pop(), '\n'
 
 
 
