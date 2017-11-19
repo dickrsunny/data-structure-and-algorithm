@@ -23,7 +23,6 @@ class LListWithTailNode(object):
         if self.is_empty():
             self.head = n
             self.rear = n
-            return
         else:
             n._next = self.head
             self.head = n
@@ -97,17 +96,31 @@ class LListWithTailNode(object):
         self.head = new_head
         return new_head
 
+    def sort(self):
+        next_node = self.head._next
+        while next_node != None:
+            current = self.head
+            while current != next_node:
+                if next_node.elem < current.elem:
+                    temp = next_node.elem
+                    next_node.elem = current.elem
+                    current.elem = temp
+                current = current._next
+            next_node = next_node._next
 
 
 l = LListWithTailNode()
-l.prepend(1)
-l.prepend(2)
-l.prepend(3)
-l.prepend(4)
 l.prepend(5)
+l.prepend(2)
+l.prepend(1)
+l.prepend(3)
+l.prepend(6)
+l.prepend(7)
+l.prepend(3)
 l.traverse()
 print ''
-l.recursive_reverse(l.head)
+# l.recursive_reverse(l.head)
+l.sort()
 l.traverse()
 # print l.rear.elem, '\n'
 # l.append(5)
