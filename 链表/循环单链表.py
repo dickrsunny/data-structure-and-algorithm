@@ -1,6 +1,6 @@
 from exceptions import ValueError
 
-class OverFlow(ValueError):
+class UnderFlow(ValueError):
     pass
 
 class LNode(object):
@@ -41,7 +41,7 @@ class CircleLList(object):
 
     def prepop(self):
         if self.rear == None:
-            raise OverFlow('LList Empty')
+            raise UnderFlow('LList Empty')
         if self.rear._next == self.rear:
             self.rear = None
         else:
@@ -49,7 +49,7 @@ class CircleLList(object):
 
     def pop(self):
         if self.rear == None:
-            raise OverFlow('LList Empty')
+            raise UnderFlow('LList Empty')
         if self.rear._next == self.rear:
             self.rear = None
         else:

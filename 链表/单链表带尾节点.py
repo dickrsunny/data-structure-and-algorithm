@@ -1,6 +1,6 @@
 from exceptions import ValueError
 
-class OverFlow(ValueError):
+class UnderFlow(ValueError):
     pass
 
 class LNode(object):
@@ -38,7 +38,7 @@ class LListWithTailNode(object):
 
     def prepop(self):
         if self.is_empty():
-            raise OverFlow('LList is empty')
+            raise UnderFlow('LList is empty')
         current = self.head
         if current._next == None:
             elem = self.head.elem
@@ -52,7 +52,7 @@ class LListWithTailNode(object):
 
     def pop(self):
         if self.is_empty():
-            raise OverFlow('LList is empty')
+            raise UnderFlow('LList is empty')
         current = self.head
         if current._next == None:
             elem = self.head.elem

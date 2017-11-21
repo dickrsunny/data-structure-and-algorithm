@@ -5,7 +5,7 @@
 """
 from exceptions import ValueError
 
-class OverFlow(ValueError):
+class UnderFlow(ValueError):
     pass
 
 class LNode(object):
@@ -54,7 +54,7 @@ class CircleDoubleLList(object):
 
     def prepop(self):
         if self.head == None:
-            raise OverFlow('LList is empty')
+            raise UnderFlow('LList is empty')
 
         elem = self.head.elem
         if self.head._next == self.head:
@@ -68,7 +68,7 @@ class CircleDoubleLList(object):
 
     def pop(self):
         if self.head == None:
-            raise OverFlow('LList is empty')
+            raise UnderFlow('LList is empty')
 
         if self.head._next == self.head:
             elem = self.head.elem

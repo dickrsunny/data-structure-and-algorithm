@@ -1,6 +1,6 @@
 from exceptions import ValueError
 
-class OverFlow(ValueError):
+class UnderFlow(ValueError):
     pass
 
 class LNode(object):
@@ -40,7 +40,7 @@ class DoubleLList(object):
 
     def prepop(self):
         if self.is_empty():
-            raise OverFlow('LList is empty')
+            raise UnderFlow('LList is empty')
 
         elem = self.head.elem
         if self.head._next == None:
@@ -54,7 +54,7 @@ class DoubleLList(object):
 
     def pop(self):
         if self.is_empty():
-            raise OverFlow('LList is empty')
+            raise UnderFlow('LList is empty')
 
         elem = self.head.elem
         if self.head._next == None:
