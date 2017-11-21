@@ -36,6 +36,7 @@ def check_parens(str_):
         else:
             res = s.pop()
             if res != opposite_parens[item]:
+                print item, j
                 return False
     return True
 
