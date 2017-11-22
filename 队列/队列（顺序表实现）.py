@@ -5,7 +5,7 @@ class UnderFlow(Exception):
 
 class Queue(object):
 
-    def __init__(self, length=2):
+    def __init__(self, length=4):
         self.length = length
         self.elems = [0] * length
         self.head = 0
