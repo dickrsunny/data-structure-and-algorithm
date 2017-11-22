@@ -68,6 +68,8 @@ class Queue(object):
         self.c.append(elem)
 
     def dequeue(self):
+        if self.is_empty():
+            raise UnderFlow()
         self.c.prepop()
 
 q = Queue()
