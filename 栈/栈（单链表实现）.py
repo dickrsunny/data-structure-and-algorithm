@@ -42,7 +42,8 @@ class LList(object):
 
 class Stack(object):
 
-    l = LList()
+    def __init__(self):
+        self.l = LList()
 
     def is_empty(self):
         return self.l.is_empty()
@@ -58,12 +59,12 @@ class Stack(object):
     def pop(self):
         self.l.prepop()
 
+
 s = Stack()
 s.push(1)
 s.push(2)
 s.push(3)
 s.l.traverse()
-s.pop()
-s.l.traverse()
+
 
 
