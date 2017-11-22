@@ -51,7 +51,7 @@ class Stack(object):
     def top(self):
         if self.l.is_empty():
             raise UnderFlow('Stack is empty')
-        return self.l.head
+        return self.l.head.elem
 
     def push(self, elem):
         self.l.prepend(elem)
@@ -65,6 +65,7 @@ s.push(1)
 s.push(2)
 s.push(3)
 s.l.traverse()
+print s.top()
 
 
 
