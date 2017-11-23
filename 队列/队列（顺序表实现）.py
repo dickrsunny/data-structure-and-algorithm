@@ -27,7 +27,7 @@ class Queue(object):
         self.count -= 1
         return elem
 
-    def expand(self):
+    def __expand(self):
         new_length = self.length * 2
         list_ = [0] * new_length
         for i in range(self.length):
@@ -38,7 +38,7 @@ class Queue(object):
 
     def enqueue(self, elem):
         if self.count == self.length:
-            self.expand()
+            self.__expand()
         self.elems[(self.head + self.count) % self.length] = elem
         self.count += 1
 
