@@ -23,7 +23,7 @@ class Queue(object):
         if self.is_empty():
             raise UnderFlow()
         elem = self.elems[self.head]
-        self.head = (self.head + 1) % self.count
+        self.head = (self.head + 1) % self.length
         self.count -= 1
         return elem
 
