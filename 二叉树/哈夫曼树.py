@@ -21,6 +21,8 @@ class UnderFlow(Exception):
 class PriorityQueue(object):
 
     def __init__(self, list_=None):
+        if list_ is None:
+            list_ = []
         self.elems = list_
         if self.elems:
             self.heapify()
@@ -79,8 +81,21 @@ class PriorityQueue(object):
             else:
                 break
 
+
+# 打印哈夫曼树编码
+def pre_order_traverse(binary_tree, code, char_freq):
+    if binary_tree.left == None or binary_tree.right == None:
+        char_freq[code] = binary_tree.elem
+        return
+
+    pre_order_traverse(binary_tree.left, code+'0', char_freq)
+    pre_order_traverse(binary_tree.right, code+'1', char_freq)
+    return char_freq
+
+
+# 构造哈夫曼树
 def HaffmanTree(weights):
-    q = PriorityQueue([])
+    q = PriorityQueue()
     for i in weights:
         q.enqueue(BinaryTreeNode(i))
     while q.number() > 1:
@@ -91,6 +106,7 @@ def HaffmanTree(weights):
     return q.dequeue()
 
 
-print HaffmanTree([2, 3, 7, 10, 4, 2, 5]).left.elem
+ht = HaffmanTree([2, 3, 7, 10, 4, 2, 5])
+print pre_order_traverse(ht, '', {})
 
 
