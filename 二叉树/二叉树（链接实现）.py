@@ -93,15 +93,15 @@ def in_order_traverse_non_recursively(binary_tree):
 
 
 # 后续遍历
-def back_order_traverse(binary_tree):
+def post_order_traverse(binary_tree):
     if binary_tree == None:
         return
-    back_order_traverse(binary_tree.left)
-    back_order_traverse(binary_tree.right)
+    post_order_traverse(binary_tree.left)
+    post_order_traverse(binary_tree.right)
     print binary_tree.elem
 
 
-def back_order_traverse_non_recursively(binary_tree):
+def post_order_traverse_non_recursively(binary_tree):
     s = Stack()
     while binary_tree or not s.is_empty():
         while binary_tree:
@@ -181,6 +181,40 @@ def max_depth(binary_tree):
     return max(max_depth(binary_tree.left), max_depth(binary_tree.right)) + 1
 
 
+# 两棵树是否相同
+def is_same_tree(bt1, bt2):
+    if bt1 == None and bt2 == None:
+        return True
+    elif bt1 and bt2:
+        return bt1.elem == bt2.elem and is_same_tree(bt1.left, bt2.left) and is_same_tree(bt1.right, bt2.right)
+    else:
+        return True
+
+"""
+由前序和中序遍历、由中序和后序遍历序列可以唯一确定一棵二叉树，而由前序和后序遍历序列不能唯一确定一棵二叉树
+"""
+
+# 已知先序、中序求后序遍历
+def rebuild(pre_order, in_order):
+    if not pre_order:
+        return None
+    root = Node(pre_order[0])
+    root_pos = in_order.index(pre_order[0])
+    root.left = rebuild(pre_order[1:root_pos+1], in_order[:root_pos])
+    root.right = rebuild(pre_order[root_pos+1:], in_order[root_pos+1:])
+    return root
+
+
+# 已知中序、后序求先序遍历
+def rebuild2(in_order, post_order):
+    if not in_order:
+        return None
+    root = Node(post_order[-1])
+    root_pos = in_order.index(post_order[-1])
+    root.left = rebuild2(in_order[:root_pos], post_order[:root_pos])
+    root.right = rebuild2(in_order[root_pos+1:], post_order[root_pos:-1])
+    return root
+
 
 
 binary_tree = Node(1, Node(2, Node(4), Node(5)), Node(3, Node(6), Node(7)))
@@ -188,6 +222,9 @@ binary_tree = Node(1, Node(2, Node(4), Node(5)), Node(3, Node(6), Node(7)))
 # print sum(binary_tree)
 # pre_order_traverse_non_recursively(binary_tree)
 # in_order_traverse_non_recursively(binary_tree)
-back_order_traverse_non_recursively(binary_tree)
+# back_order_traverse_non_recursively(binary_tree)
 # level_order_traverse(binary_tree)
 # print max_depth(binary_tree)
+# print is_same_tree(binary_tree, binary_tree)
+binary_tree2 = rebuild2([4, 2, 5, 1, 6, 3, 7], [4, 5, 2, 6, 7, 3, 1])
+pre_order_traverse(binary_tree2)
