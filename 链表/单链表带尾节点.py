@@ -68,8 +68,8 @@ class LListWithTailNode(object):
             self.rear = current
             return elem
 
-    def traverse(self):
-        current = self.head
+    def traverse(self, head=None):
+        current = head or self.head
         while current != None:
             print current.elem
             current = current._next
@@ -97,6 +97,7 @@ class LListWithTailNode(object):
         self.head = new_head
         return new_head
 
+    # 插入排序
     def sort(self):
         next_node = self.head._next
         while next_node != None:
@@ -108,6 +109,45 @@ class LListWithTailNode(object):
                     current.elem = temp
                 current = current._next
             next_node = next_node._next
+
+    # 交换成对链表元素
+    def swap_pairs_elem(self):
+        current = self.head
+        while current and current._next:
+            temp = current.elem
+            current.elem = current._next.elem
+            current._next.elem = temp
+            if current._next._next:
+                current = current._next._next
+            else:
+                break
+
+    # 交换成对链表链接
+    def swap_pairs_link(self):
+        current = self.head
+        self.head = current._next
+        prev = None
+        while current and current._next:
+            temp = current._next
+            current._next = current._next._next
+            temp._next = current
+            if prev:
+                prev._next = temp
+            if current._next:
+                prev = current
+                current = current._next
+            else:
+                break
+
+    # 递归交换成对链表
+    def swap_pairs_link_recursively(self, head):
+        current = head
+        if current != None and current._next != None:
+            temp = current._next
+            current._next = self.swap_pairs_link_recursively(temp._next)
+            temp._next = current
+            return temp
+        return current
 
 
 def cross_node(l1, l2):
@@ -143,11 +183,14 @@ def cross_node(l1, l2):
 
 l = LListWithTailNode()
 l2 = LListWithTailNode()
-l.append(5)
-l.append(6)
 l.append(1)
 l.append(2)
-# l.traverse()
+l.append(3)
+l.append(4)
+l.append(5)
+l.append(6)
+l.append(7)
+l.traverse()
 l2.append(3)
 l2.append(4)
 l2.append(7)
@@ -155,17 +198,18 @@ l2.append(8)
 l2.append(1)
 l2.append(2)
 # l2.traverse()
-print cross_node(l, l2)
-# print ''
-# l.recursive_reverse(l.head)
+# print cross_node(l, l2)
 # l.sort()
 # l.traverse()
+# print ''
+# l.recursive_reverse(l.head)
 # print l.rear.elem, '\n'
 # l.append(5)
 # l.append(6)
 # l.traverse()
 # print l.rear.elem
-
+res = l.swap_pairs_link_recursively(l.head)
+l.traverse(res)
 
 
 
