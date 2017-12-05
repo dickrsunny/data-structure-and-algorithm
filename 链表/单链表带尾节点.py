@@ -150,6 +150,7 @@ class LListWithTailNode(object):
         return current
 
 
+# 交叉链表求交点
 def cross_node(l1, l2):
     if not l1.is_empty() and not l2.is_empty():
         length1, length2 = 1, 1
@@ -165,32 +166,24 @@ def cross_node(l1, l2):
             if length1 >= length2:
                 for i in range(length1 - length2):
                     head1 = head1._next
-                while head2 != None:
-                    if head2.elem == head1.elem:
-                        return head2.elem
-                    head2 = head2._next
-                    head1 = head1._next
             else:
                 for i in range(length2 - length1):
                     head2 = head2._next
-                while head1 != None:
-                    if head1.elem == head2.elem:
-                        return head1.elem
-                    head1 = head1._next
-                    head2 = head2._next
+            while head1 and head2:
+                if head1.elem == head2.elem:
+                    return head1.elem
+                head1 = head1._next
+                head2 = head2._next
     print '无交点'
 
 
 l = LListWithTailNode()
 l2 = LListWithTailNode()
-l.append(1)
-l.append(2)
-l.append(3)
-l.append(4)
 l.append(5)
 l.append(6)
-l.append(7)
-l.traverse()
+l.append(1)
+l.append(2)
+# l.traverse()
 l2.append(3)
 l2.append(4)
 l2.append(7)
@@ -198,7 +191,7 @@ l2.append(8)
 l2.append(1)
 l2.append(2)
 # l2.traverse()
-# print cross_node(l, l2)
+print cross_node(l, l2)
 # l.sort()
 # l.traverse()
 # print ''
@@ -208,8 +201,8 @@ l2.append(2)
 # l.append(6)
 # l.traverse()
 # print l.rear.elem
-res = l.swap_pairs_link_recursively(l.head)
-l.traverse(res)
+# res = l.swap_pairs_link_recursively(l.head)
+# l.traverse(res)
 
 
 
