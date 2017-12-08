@@ -72,7 +72,7 @@ class Solution2(object):
             if i < length_A and nums1[i] < nums2[j - 1]:
                 start = i + 1
             elif i > 0 and nums1[i - 1] > nums2[j]:
-                end = end - 1
+                end = i - 1
             else:
                 if i == 0:
                     left = nums2[j - 1]
