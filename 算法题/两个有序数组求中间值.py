@@ -49,7 +49,7 @@ print s.findMedianSortedArrays([1, 3, 5], [2, 4, 6, 8])
 
 """
 
-
+# 二分查找
 class Solution2(object):
     def findMedianSortedArrays(self, nums1, nums2):
         """
@@ -90,12 +90,12 @@ class Solution2(object):
                     right = nums1[i]
                 else:
                     right = min(nums1[i], nums2[j])
-
                 return (left + right) / 2.0
 
 
 s = Solution2()
-print s.findMedianSortedArrays([1, 3, 5], [2, 4, 6, 8])
+# print s.findMedianSortedArrays([1, 3, 5], [2, 4, 6, 8])
+print s.findMedianSortedArrays([5, 6, 7], [1, 2, 3])
 
 
 """
