@@ -32,6 +32,14 @@ class Solution(object):
 
 
 # 最优解：时间复杂度：O(n)，空间复杂度：O(1)
+
+"""
+代码思路如下：两个指针，先让第一个指针和第二个指针都指向头结点，
+然后再让第一个指正走(k-1)步，到达第k个节点。然后两个指针同时往后移动，
+当第一个结点到达末尾的时候，第二个结点所在位置就是倒数第k个节点了
+
+"""
+
 class Solution2(object):
     def FindKthToTail(self, head, k):
         # write code here
