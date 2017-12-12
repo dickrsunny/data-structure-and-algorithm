@@ -74,6 +74,7 @@ class LListWithTailNode(object):
             print current.elem
             current = current._next
 
+    # 每次只改变当前节点的链接指向
     def reverse(self):
         prev = None
         current = self.head
