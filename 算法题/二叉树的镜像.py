@@ -49,7 +49,7 @@ class Solution(object):
                 self.elems.pop()
                 return elem
 
-        if not root:
+        if not root or not root.left and not root.right:
             return
 
         s = Stack()
@@ -57,6 +57,8 @@ class Solution(object):
         while not s.is_empty:
             root = s.pop()
             while root:
+                if not root.left and not root.right:
+                    break
                 root.left, root.right = root.right, root.left
                 s.push(root.right)
                 root = root.left
@@ -65,6 +67,9 @@ class Solution(object):
     def mirror_pre_order_recursively(self, root):
         # write code here
         if not root:
+            return
+
+        if not root.left and not root.right:
             return
 
         root.left, root.right = root.right, root.left
@@ -76,6 +81,9 @@ class Solution(object):
         if not root:
             return
 
+        if not root.left and not root.right:
+            return
+
         self.mirror_in_order_recursively(root.left)
         root.left, root.right = root.right, root.left
         self.mirror_in_order_recursively(root.left)
@@ -83,6 +91,9 @@ class Solution(object):
 
     def mirror_post_order_recursively(self, root):
         if not root:
+            return
+
+        if not root.left and not root.right:
             return
 
         self.mirror_post_order_recursively(root.left)
