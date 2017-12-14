@@ -188,7 +188,7 @@ def is_same_tree(bt1, bt2):
     elif bt1 and bt2:
         return bt1.elem == bt2.elem and is_same_tree(bt1.left, bt2.left) and is_same_tree(bt1.right, bt2.right)
     else:
-        return True
+        return False
 
 """
 由前序和中序遍历、由中序和后序遍历序列可以唯一确定一棵二叉树，而由前序和后序遍历序列不能唯一确定一棵二叉树
@@ -218,6 +218,8 @@ def rebuild2(in_order, post_order):
 
 
 binary_tree = Node(1, Node(2, Node(4), Node(5)), Node(3, Node(6), Node(7)))
+# binary_tree = None
+binary_tree2 = Node(1, Node(2, Node(4), Node(5)), Node(3, Node(6), Node(7)))
 # print count(binary_tree)
 # print sum(binary_tree)
 # pre_order_traverse_non_recursively(binary_tree)
@@ -225,6 +227,6 @@ binary_tree = Node(1, Node(2, Node(4), Node(5)), Node(3, Node(6), Node(7)))
 # back_order_traverse_non_recursively(binary_tree)
 # level_order_traverse(binary_tree)
 # print max_depth(binary_tree)
-# print is_same_tree(binary_tree, binary_tree)
-binary_tree2 = rebuild2([4, 2, 5, 1, 6, 3, 7], [4, 5, 2, 6, 7, 3, 1])
-pre_order_traverse(binary_tree2)
+print is_same_tree(binary_tree, binary_tree2)
+# binary_tree3 = rebuild2([4, 2, 5, 1, 6, 3, 7], [4, 5, 2, 6, 7, 3, 1])
+# pre_order_traverse(binary_tree3)
