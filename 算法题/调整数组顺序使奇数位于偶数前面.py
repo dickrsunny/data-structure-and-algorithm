@@ -18,7 +18,8 @@ class Solution(object):
                 odd.append(i)
             else:
                 even.append(i)
-        return odd + even
+        odd.extend(even)
+        return odd
 
 s = Solution()
 print s.reOrderArray([1, 2, 3, 4, 5, 6])
