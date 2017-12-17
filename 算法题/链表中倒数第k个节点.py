@@ -5,9 +5,7 @@
 
 """
 
-
-# 常规解法要么是 > O(n) 的时间复杂度，或 O(n)的时间复杂度
-# eg:
+# 最优解：时间复杂度：O(n)，空间复杂度：O(1)
 
 
 # class ListNode:
@@ -31,7 +29,6 @@ class Solution(object):
                 return head
 
 
-# 最优解：时间复杂度：O(n)，空间复杂度：O(1)
 
 """
 代码思路如下：两个指针，先让第一个指针和第二个指针都指向头结点，
@@ -43,13 +40,21 @@ class Solution(object):
 class Solution2(object):
     def FindKthToTail(self, head, k):
         # write code here
-        if k > 0 and head:
-            first = head
-            for i in range(k - 1):
-                first = first.next
-            if first != None:
-                second = head
-                while first.next != None:
+        if 0 < k and head:
+            length = 0
+            current = head
+            while current:
+                current = current.next
+                length += 1
+
+            if k <= length:
+                first = head
+                for i in range(k - 1):
                     first = first.next
-                    second = second.next
-                return second
+
+                if first != None:
+                    second = head
+                    while first.next != None:
+                        first = first.next
+                        second = second.next
+                    return second
