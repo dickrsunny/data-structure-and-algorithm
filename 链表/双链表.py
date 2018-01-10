@@ -46,26 +46,24 @@ class DoubleLList(object):
         if self.head._next == None:
             self.head = None
             self.rear = None
-            return elem
         else:
             self.head = self.head._next
             self.head.prev = None
-            return elem
+        return elem
 
     def pop(self):
         if self.is_empty():
             raise UnderFlow('LList is empty')
 
-        elem = self.head.elem
+        elem = self.rear.elem
         if self.head._next == None:
             self.head = None
             self.rear = None
-            return elem
         else:
             self.rear = self.rear.prev
             self.rear._next.prev = None
             self.rear._next = None
-            return elem
+        return elem
 
     def traverse(self):
         current = self.head
@@ -85,7 +83,7 @@ d.append(7)
 d.append(8)
 d.traverse()
 print ''
-d.pop()
+print d.pop()
 d.traverse()
 
 
