@@ -11,5 +11,13 @@ class Solution(object):
             j -= 1
         return list_
 
+    def list_reverse2(self, list_):
+        half = len(list_) // 2
+        for i in xrange(half):
+            list_[i], list_[-(i + 1)] = list_[-(i + 1)], list_[i]
+        return list_
+
+
+
 s = Solution()
-print s.list_reverse([1, 2, 3, 4, 5, 6, 7])
+print s.list_reverse2([1, 2, 3, 4, 5, 6, 7, 8])
