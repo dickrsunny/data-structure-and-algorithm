@@ -13,8 +13,9 @@ class Solution(object):
 
     def list_reverse2(self, list_):
         half = len(list_) // 2
-        for i in xrange(half):
-            list_[i], list_[-(i + 1)] = list_[-(i + 1)], list_[i]
+        if half != 0:
+            for i in xrange(half):
+                list_[i], list_[-(i + 1)] = list_[-(i + 1)], list_[i]
         return list_
 
 
