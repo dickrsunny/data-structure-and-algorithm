@@ -15,13 +15,19 @@
 class SlideWindow:
     # 传统时间复杂度为O(n*w)
     def slide(self, arr, n, w):
+        if not arr or w <= 0:
+            return []
+
+        length = n - w + 1
         res = []
-        for i in range(n - w + 1):
-            temp = arr[i:i + w]
-            for j in range(w - 1):
-                if temp[j] > temp[j + 1]:
-                    temp[j], temp[j + 1] = temp[j + 1], temp[j]
-            res.append(temp[-1])
+        for i in range(length):
+            temp_val = arr[i]
+
+            for j in range(1, w):
+                if temp_val < arr[i + j]:
+                    temp_val = arr[i + j]
+
+            res.append(temp_val)
         return res
 
     # 时间复杂度为O(n)：整个过程arr每个下标最多进双端队列一次，出双端队列一次
@@ -115,7 +121,7 @@ class SlideWindow:
         d = DoubleLList()
         for i in range(0, n):
             if not d.is_empty():
-                # 比较当前元素与双端队列（此处为双链表，方便起见）最后一个元素的大小：小的话直接追加，大的话先弹出所有较大元素再追加
+                # 比较当前元素与双端队列（此处为双链表，方便起见）最后一个元素的大小：小的话直接追加，大的话先弹出所有较小元素再追加
                 if arr[i] >= arr[d.last()]:
                     while not d.is_empty() and arr[i] >= arr[d.last()]:
                         d.pop()
@@ -134,4 +140,4 @@ class SlideWindow:
 
 s = SlideWindow()
 # print s.slide2([36, 445, 234], 3, 1)
-print s.slide2([4, 3, 5, 4, 3, 3, 6, 7], 8, 3)
+print s.slide([4, 3, 5, 4, 3, 3, 6, 7], 8, 3)
