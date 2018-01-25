@@ -33,6 +33,9 @@ class SlideWindow:
     # 时间复杂度为O(n)：整个过程arr每个下标最多进双端队列一次，出双端队列一次
     def slide2(self, arr, n, w):
 
+        if not arr or w <= 0:
+            return []
+
         from exceptions import ValueError
 
         class UnderFlow(ValueError):
