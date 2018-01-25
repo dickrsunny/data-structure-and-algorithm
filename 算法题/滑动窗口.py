@@ -120,11 +120,9 @@ class SlideWindow:
         res = []
         d = DoubleLList()
         for i in range(0, n):
-            if not d.is_empty():
-                # 比较当前元素与双端队列（此处为双链表，方便起见）最后一个元素的大小：小的话直接追加，大的话先弹出所有较小元素再追加
-                if arr[i] >= arr[d.last()]:
-                    while not d.is_empty() and arr[i] >= arr[d.last()]:
-                        d.pop()
+            # 比较当前元素与双端队列（此处为双链表，方便起见）最后一个元素的大小：小的话直接追加，大的话先弹出所有较小元素再追加
+            while not d.is_empty() and arr[i] >= arr[d.last()]:
+                d.pop()
 
             d.append(i)
 
@@ -140,4 +138,4 @@ class SlideWindow:
 
 s = SlideWindow()
 # print s.slide2([36, 445, 234], 3, 1)
-print s.slide([4, 3, 5, 4, 3, 3, 6, 7], 8, 3)
+print s.slide2([4, 3, 5, 4, 3, 3, 6, 7], 8, 3)
