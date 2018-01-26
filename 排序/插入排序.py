@@ -13,4 +13,4 @@ def insertSort(A, n):
         A[j] = temp
     return A
 
-print insertSort2([1, 2, 7, 5, 2, 9, 3], 7)
+print insertSort([1, 2, 7, 5, 2, 9, 3], 7)
