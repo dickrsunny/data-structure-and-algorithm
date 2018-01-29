@@ -6,12 +6,12 @@ class Solution(object):
         i, j = low, high + 1
         v = _list[low]
         while True:
-            # 向右遍历，比v大就退出循环
+            # 向右遍历，比v大或等于就退出循环
             while True:
                 i += 1
                 if v <= _list[i] or i == high:
                     break
-            # 向左遍历，比v小就退出循环
+            # 向左遍历，比v小或等于就退出循环
             while True:
                 j -= 1
                 if v >= _list[j]:
