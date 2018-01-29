@@ -3,8 +3,8 @@ def bubbleSort(alist):
         return alist
 
     length = len(alist)
-    for passnum in range(length - 1, 0, -1):
-        for i in range(passnum):
+    for passnum in xrange(length - 1, 0, -1):
+        for i in xrange(passnum):
             if alist[i] > alist[i + 1]:
                 temp = alist[i]
                 alist[i] = alist[i + 1]
