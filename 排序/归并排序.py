@@ -1,6 +1,6 @@
 #coding:utf-8
 def mergeSort(seq):
-    if len(seq) <= 1:
+    if not seq or len(seq) <= 1:
         return seq
     else:
         middle = len(seq) // 2
