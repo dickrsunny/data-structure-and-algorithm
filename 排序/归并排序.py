@@ -1,6 +1,6 @@
 #coding:utf-8
 def mergeSort(seq):
-    if len(seq) == 1:
+    if len(seq) <= 1:
         return seq
     else:
         middle = len(seq) // 2
@@ -15,16 +15,20 @@ def mergeSort(seq):
             if left[i] < right[j]:
                 seq[k] = left[i]
                 i += 1
-                k += 1
             else:
                 seq[k] = right[j]
                 j += 1
-                k += 1
+            k += 1
 
-        remain = left if i < j else right
-        r = i if remain == left else j
+        if i < j:
+            remain = left
+            r = i
+        else:
+            remain = right
+            r = j
 
-        while r < len(remain):
+        length = len(remain)
+        while r < length:
             seq[k] = remain[r]
             r += 1
             k += 1
