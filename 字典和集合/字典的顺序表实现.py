@@ -57,11 +57,14 @@ class DictList(object):
                 return mid
 
     def delete(self, key):
-        site = self.binary_search_delete(key)
-        if site:
-            self.elems.pop(site)
+        if not self.is_empty:
+            site = self.binary_search_delete(key)
+            if site:
+                self.elems.pop(site)
+            else:
+                raise KeyError(key)
         else:
-            raise ValueError()
+            raise KeyError(key)
 
 
 
@@ -71,7 +74,7 @@ d.insert(3, 'q')
 d.insert(5, 'q')
 d.insert(7, 'q')
 d.insert(2, 'q')
-d.delete(3)
+d.delete(99)
 
 
 for i in d.elems:
