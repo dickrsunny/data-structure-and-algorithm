@@ -12,7 +12,7 @@ def binary_search(list_, elem):
     length = len(list_)
     left, right = 0, length - 1
     while left <= right:
-        mid = (left + right) // 2
+        mid = left + (right - left) // 2
         if elem == list_[mid]:
             return mid
         elif elem > list_[mid]:
@@ -26,7 +26,7 @@ def binary_search_recursively(list_, elem, left, right):
     if left > right:
         return 'not found'
 
-    mid = (left + right) // 2
+    mid = left + (right - left) // 2
     if elem == list_[mid]:
         return mid
     elif elem > list_[mid]:
@@ -35,6 +35,6 @@ def binary_search_recursively(list_, elem, left, right):
         return binary_search_recursively(list_, elem, left, mid - 1)
 
 
-# print binary_search([1, 3, 4, 6, 7, 8, 10, 13, 14], 6)
-print binary_search_recursively([1, 3, 4, 6, 7, 8, 10, 13, 14], 6, 0, 8)
+print binary_search([1, 3, 4, 6, 7, 8, 10, 13, 14], 6)
+# print binary_search_recursively([1, 3, 4, 6, 7, 8, 10, 13, 14], 6, 0, 8)
 
