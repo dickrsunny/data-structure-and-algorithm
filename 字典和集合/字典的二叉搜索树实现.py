@@ -51,6 +51,49 @@ class Dict(object):
 
         return root
 
+    def delete_min(self):
+        self.__delete_min(self.root)
+
+    def __delete_min(self, root):
+        if not root.left:
+            return
+
+        root.left = self.__delete_min(root.left)
+        return root
+
+    def delete(self, key):
+        self.__delete(key, self.root)
+
+    def __delete(self, key, root):
+        if not root:
+            return
+
+        if key > root.key:
+            root.right = self.__delete(key, root.right)
+        elif key < root.key:
+            root.left = self.__delete(key, root.left)
+        else:
+            if not root.left:
+                return root.right
+            if not root.right:
+                return root.left
+
+            new_root = self.delete_then_return_min(root.right)
+            new_root.left = root.left
+            if new_root != root.right:
+                new_root.right = root.right
+            return new_root
+        return root
+
+    def delete_then_return_min(self, root):
+        prev = root
+        while root.left:
+            prev = root
+            root = root.left
+
+        prev.left = None
+        return root
+
     def traverse(self):
         self.__traverse(self.root)
 
@@ -67,12 +110,21 @@ d = Dict()
 d.put(5, 'a')
 d.put(3, 'a')
 d.put(2, 'a')
+d.put(1, 'a')
+d.put(2.5, 'a')
 d.put(4, 'a')
+d.put(3.5, 'a')
+d.put(4.5, 'a')
 d.put(7, 'a')
 d.put(6, 'a')
 d.put(8, 'a')
 d.put(7.5, 'a')
 print d.get(8)
+print ''
+d.traverse()
+d.delete_min()
+d.delete(3)
+print ''
 d.traverse()
 
 
