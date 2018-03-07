@@ -60,8 +60,7 @@ class SingleLinkList(object):
             raise KeyError(key)
 
 
-
-class dict(object):
+class Dict(object):
 
     def __init__(self):
         self.n = 33
@@ -88,7 +87,7 @@ class dict(object):
         self._list[m].remove(key)
 
 
-d = dict()
+d = Dict()
 d.put('a', 1)
 d.put('b', 2)
 d.put('c', 3)
