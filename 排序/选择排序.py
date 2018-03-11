@@ -7,7 +7,7 @@ def selectionSort(alist):
 
     length = len(alist)
     # 依次遍历数组中的元素，在剩余的元素中找比自己小的元素，若找到，则交换值，否则和自身交换
-    for i in xrange(length):
+    for i in xrange(length - 1):
         min_site = i
         for j in xrange(i + 1, length):
             if alist[j] < alist[min_site]:
