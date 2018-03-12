@@ -1,17 +1,16 @@
 class ThreeColor:
     def sortThreeColor(self, A, n):
         # write code here
-        i = 0
-        j = n - 1
-        k = 0
-        while i <= j:
+        left, i = 0, 0
+        right = n - 1
+        while i <= right:
             if A[i] == 0:
-                A[i], A[k] = A[k], A[i]
+                A[i], A[left] = A[left], A[i]
+                left += 1
                 i += 1
-                k += 1
             elif A[i] == 2:
-                A[i], A[j] = A[j], A[i]
-                j -= 1
+                A[i], A[right] = A[right], A[i]
+                right -= 1
             else:
                 i += 1
         return A
