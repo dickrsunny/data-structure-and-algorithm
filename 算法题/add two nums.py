@@ -23,109 +23,35 @@ Explanation: 342 + 465 = 807.
 
 """
 
-from exceptions import ValueError
 
-class UnderFlow(ValueError):
-    pass
-
-class LNode(object):
-    def __init__(self, elem, _next=None):
-        self.elem = elem
-        self._next = None
-
-class LListWithTailNode(object):
-
-    def __init__(self):
-        self.head = None
-        self.rear = None
-
-    def is_empty(self):
-        return self.head == None
-
-    def prepend(self, elem):
-        n = LNode(elem)
-        if self.is_empty():
-            self.head = n
-            self.rear = n
-        else:
-            n._next = self.head
-            self.head = n
-
-    def append(self, elem):
-        n = LNode(elem)
-        if self.is_empty():
-            self.head = n
-            self.rear = n
-        else:
-            self.rear._next = n
-            self.rear = n
-
-    def prepop(self):
-        if self.is_empty():
-            raise UnderFlow('LList is empty')
-        current = self.head
-        if current._next == None:
-            elem = self.head.elem
-            self.head = None
-            self.rear = None
-            return elem
-        else:
-            elem = self.head.elem
-            self.head = self.head._next
-            return elem
-
-    def pop(self):
-        if self.is_empty():
-            raise UnderFlow('LList is empty')
-        current = self.head
-        if current._next == None:
-            elem = self.head.elem
-            self.head = None
-            self.rear = None
-            return elem
-        else:
-            while current._next._next != None:
-                current = current._next
-            elem = current._next.elem
-            current._next = None
-            self.rear = current
-            return elem
-
-    def traverse(self, head=None):
-        current = head or self.head
-        while current != None:
-            print current.elem
-            current = current._next
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
+        current1, current2 = l1, l2
+        decade = 0
+        res = []
+        while current1 or current2:
+            if current1 and current2:
+                _sum = current1.val + current2.val + decade
+                current1 = current1.next
+                current2 = current2.next
+            elif current1:
+                _sum = current1.val + decade
+                current1 = current1.next
 
-        l3 = LListWithTailNode()
-        carry = 0
-        while l1 or l2 or carry:
-            num1 = l1.elem
-            l1 = l1._next
+            else:
+                _sum = current2.val + decade
+                current2 = current2.next
 
-            num2 = l2.elem
-            l2 = l2._next
+            unit = _sum % 10
+            decade = (_sum // 10) % 10
 
-            carry, val = divmod(num1 + num2 + carry, 10)
-
-            l3.append(val)
-        return l3
-
-
-l1 = LListWithTailNode()
-l1.append(2)
-l1.append(4)
-l1.append(3)
-
-l2 = LListWithTailNode()
-l2.append(5)
-l2.append(6)
-l2.append(4)
-
-s = Solution()
-s.addTwoNumbers(l1.head, l2.head).traverse()
-
+            res.append(unit)
+            if not current1 and not current2 and decade:
+                res.append(decade)
+        return res
