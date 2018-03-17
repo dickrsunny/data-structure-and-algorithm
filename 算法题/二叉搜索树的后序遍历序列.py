@@ -37,6 +37,31 @@ class Solution(object):
         return left and right
 
 
+    def VerifySequenceOfBST2(self, sequence):
+        if not sequence:
+            return False
+
+        return self.detail_do(sequence, 0, len(sequence) - 1)
+
+
+    def detail_do(self, sequence, low, high):
+        if low >= high:
+            return True
+
+        i = low
+        while i < high and sequence[i] < sequence[high]:
+            i += 1
+
+        j = i
+        while j < high:
+            if sequence[j] < sequence[high]:
+                return False
+            j += 1
+
+        return self.detail_do(sequence, low, i - 1) and self.detail_do(sequence, i, high - 1)
+
+
 s = Solution()
 # print s.VerifySequenceOfBST([1, 4, 7, 6, 3, 13, 14, 10, 8])
-print s.VerifySequenceOfBST([2, 1, 3, 4, 1])
+# print s.VerifySequenceOfBST([2, 1, 3, 4, 1])
+print s.VerifySequenceOfBST([1, 3, 2])
