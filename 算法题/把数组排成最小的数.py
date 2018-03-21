@@ -19,8 +19,8 @@ class Solution(object):
             return numbers[0]
 
         numbers = map(str, numbers)
-        for i in range(0, length):
-            for j in range(i, length):
+        for i in xrange(0, length):
+            for j in xrange(i + 1, length):
                 if (numbers[i] + numbers[j]) > (numbers[j] + numbers[i]):
                     tmp = numbers[i]
                     numbers[i] = numbers[j]
