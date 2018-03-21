@@ -6,7 +6,7 @@
 
 """
 
-
+# python2
 class Solution(object):
     def min_heapify(self, root_pos, list_, length):
         left = 2 * root_pos + 1
@@ -86,6 +86,36 @@ class Solution(object):
             self.max_heapify(0, temp, m)
 
         return temp
+
+
+# python3
+class Solution2:
+    def get_min_nums(self, array, k):
+        if not array or len(array) <= k:
+            return array
+
+        length = len(array)
+        for i in range(k // 2 - 1, -1, -1):
+            self.heapify(array, i, k)
+
+        for j in range(k, length):
+            if array[j] < array[0]:
+                array[0] = array[j]
+                self.heapify(array, 0, k)
+        return array[:k]
+
+    def heapify(self, array, root, length):
+        while root * 2 + 1 < length:
+            left = root * 2 + 1
+            right = root * 2 + 2
+            if right < length and array[left] < array[right]:
+                left = right
+            if array[root] < array[left]:
+                array[root], array[left] = array[left], array[root]
+            else:
+                break
+            root = left
+
 
 s = Solution()
 # print s.GetLeastNumbers_Solution([4, 5, 1, 6, 2, 7, 3, 8], 4)
