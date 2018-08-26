@@ -1,11 +1,15 @@
 #coding: utf-8
 
 '''
+1.分治发
 时间复杂度：O(N*lgN)
+
+2.在线处理
+时间复杂度：O(N)
 '''
 
 class Solution:
-
+    '''分治法'''
     def __init__(self):
         self._max = 0
 
@@ -55,4 +59,24 @@ class Solution:
 
 s = Solution()
 print(s.max_sum([4, -3, 5, -2, -1, 2, 6, -2]))
+print(s.max_sum([-3, -2, -1]))
+
+
+class Solution:
+    '''在线处理'''
+
+    def max_sum(self, array):
+        if isinstance(array, list) and array:
+            max_ = current_max = 0
+            for i in array:
+                current_max += i
+                if current_max > max_:
+                    max_ = current_max
+                elif current_max < 0:
+                    current_max = 0
+            return max_
+
+
+s2 = Solution()
+print(s2.max_sum([4, -3, 5, -2, -1, 2, 6, -2]))
 print(s.max_sum([-3, -2, -1]))
