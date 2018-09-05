@@ -100,7 +100,10 @@ class Dict:
                 return default
 
         node = Node(key, key)
+        self.is_exist = False
         self._delete(node, self.root)
+        if not self.is_exist:
+            raise KeyError(key)
 
     def _delete(self, node, root):
         if not root:
@@ -111,6 +114,7 @@ class Dict:
         elif node < root:
             root.left = self._delete(node, root.left)
         else:
+            self.is_exist = True
             if not root.left:
                 return root.right
             if not root.right:
