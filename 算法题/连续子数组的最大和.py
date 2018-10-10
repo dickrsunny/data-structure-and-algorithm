@@ -41,17 +41,23 @@ class Solution(object):
             return array[0]
 
         sum_ = temp_sum = array[0]
-        for i in array[1:]:
+        left = start = end = 0
+
+        for i in range(1, len(array)):
             if temp_sum > 0:
-                temp_sum += i
+                temp_sum += array[i]
             else:
-                temp_sum = i
+                temp_sum = array[i]
+                left = i
 
             if temp_sum > sum_:
                 sum_ = temp_sum
-        return sum_
+                start = left
+                end = i
 
+        # 返回最大子序列的起始、结束位置以及总和
+        return start, end, sum_
 
 
 s = Solution()
-print s.FindGreatestSumOfSubArray2([6, -3, -2, 7, -15, 1, 2, 2])
+print(s.FindGreatestSumOfSubArray2([6, -3, -2, 7, -15, 1, 2, 2]))

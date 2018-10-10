@@ -45,15 +45,11 @@ class Dict:
             raise KeyError(key)
 
         node = Node(key, key)
-        val = self._get(node, self.root)
-        if not val:
-            raise KeyError(key)
-
-        return val
+        return self._get(node, self.root)
 
     def _get(self, node, root):
         if not root:
-            return
+            raise KeyError(node.key)
 
         if node > root:
             return self._get(node, root.right)
@@ -66,8 +62,8 @@ class Dict:
         node = Node(key, value)
         if self.is_empty:
             self.root = node
-
-        self._put(node, self.root)
+        else:
+            self._put(node, self.root)
 
     def _put(self, node, root):
         if not root:
@@ -100,21 +96,21 @@ class Dict:
                 return default
 
         node = Node(key, key)
-        self.is_exist = False
-        self._delete(node, self.root)
-        if not self.is_exist:
-            raise KeyError(key)
+        new_root = self._delete(node, self.root)
+
+        # 删除根节点时替换根结点
+        if key == self.root.key:
+            self.root = new_root
 
     def _delete(self, node, root):
         if not root:
-            return
+            raise KeyError(node.key)
 
         if node > root:
             root.right = self._delete(node, root.right)
         elif node < root:
             root.left = self._delete(node, root.left)
         else:
-            self.is_exist = True
             if not root.left:
                 return root.right
             if not root.right:
@@ -133,7 +129,7 @@ class Dict:
             prev = root
             root = root.left
 
-        prev.left = None
+        prev.left = root.right
         return root
 
     def traverse(self):
