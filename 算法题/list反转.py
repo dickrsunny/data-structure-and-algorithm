@@ -1,5 +1,7 @@
-# python2
-class Solution(object):
+# coding: utf-8
+
+
+class Solution:
 
     def list_reverse(self, list_):
 
@@ -14,11 +16,11 @@ class Solution(object):
     def list_reverse2(self, list_):
         half = len(list_) // 2
         if half != 0:
-            for i in xrange(half):
+            for i in range(half):
                 list_[i], list_[-(i + 1)] = list_[-(i + 1)], list_[i]
         return list_
 
-# python3
+
 class Solution2:
     def reverse_array(self, array):
         if not array or len(array) == 1:
@@ -30,6 +32,5 @@ class Solution2:
         return array
 
 
-
 s = Solution()
-print s.list_reverse2([1, 2, 3, 4, 5, 6, 7, 8])
+print(s.list_reverse2([1, 2, 3, 4, 5, 6, 7, 8]))

@@ -1,4 +1,4 @@
-#coding: utf-8
+# coding: utf-8
 
 """
 输入两个单调递增的链表，输出两个链表合成后的链表，
@@ -6,14 +6,15 @@
 
 """
 
-class ListNode(object):
+
+class ListNode:
 
     def __init__(self, x, y=None):
         self.val = x
         self.next = y
 
 
-class Solution(object):
+class Solution:
 
     def merge_two_sorted_list(self, pHead1, pHead2):
         # current = head = ListNode(0)
@@ -81,4 +82,4 @@ l1 = ListNode(1, ListNode(3, ListNode(5)))
 l2 = ListNode(2, ListNode(4, ListNode(6)))
 
 s = Solution()
-print s.merge_two_sorted_list_recursively(l1, l2).val
+print(s.merge_two_sorted_list_recursively(l1, l2).val)
