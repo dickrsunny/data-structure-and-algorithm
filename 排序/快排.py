@@ -1,21 +1,22 @@
-#coding: utf-8
+# coding: utf-8
 
-class Solution(object):
+
+class Solution:
 
     def partition(self, _list, low, high):
-        i, j = low, high + 1
+        i, j = low, high
         v = _list[low]
         while True:
-            # 向右遍历，比v大或等于就退出循环
+            # 向右遍历，比v大就退出循环
             while True:
                 i += 1
-                if v <= _list[i] or i == high:
+                if v < _list[i] or i == high:
                     break
-            # 向左遍历，比v小或等于就退出循环
+            # 向左遍历，比v小就退出循环
             while True:
-                j -= 1
-                if v >= _list[j]:
+                if v > _list[j] or j == low:
                     break
+                j -= 1
 
             if i >= j:
                 break
@@ -23,6 +24,7 @@ class Solution(object):
             _list[i], _list[j] = _list[j], _list[i]
 
         _list[low], _list[j] = _list[j], _list[low]
+
         return j
 
     def sort(self, _list, low, high):
@@ -41,6 +43,7 @@ class Solution(object):
         self.sort(_list, 0, len(_list) - 1)
         return _list
 
+    ####################################
 
     def sort2(self, _list, low, high):
         if high <= low:
@@ -63,7 +66,6 @@ class Solution(object):
         self.sort2(_list, low, lt - 1)
         self.sort2(_list, gt + 1, high)
 
-
     # 大量重复元素
     def quick_sort2(self, _list):
         if not _list or len(_list) == 1:
@@ -73,7 +75,6 @@ class Solution(object):
         return _list
 
 
-
 s = Solution()
-print s.quick_sort([1, 2, 1, 3, 5, 2, 3])
+print(s.quick_sort([1, 2, 1, 3, 5, 2, 3]))
 # print s.quick_sort2([1, 2, 1, 3, 5, 2, 3])
