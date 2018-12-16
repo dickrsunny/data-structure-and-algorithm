@@ -38,13 +38,13 @@ def mergeSort(seq):
         return seq
 
 
-def mergeSort2(seq, left, right):
-    if left >= right:
-        return seq[left: right + 1]
+def mergeSort2(seq, start, end):
+    if start >= end:
+        return seq[start: end + 1]
     else:
-        middle = (right + left + 1) // 2
-        left = mergeSort2(seq, left, middle - 1)
-        right = mergeSort2(seq, middle, right)
+        middle = (start + end + 1) // 2
+        left = mergeSort2(seq, start, middle - 1)
+        right = mergeSort2(seq, middle, end)
 
         i = 0  # left 计数
         j = 0  # right 计数
@@ -65,3 +65,4 @@ def mergeSort2(seq, left, right):
 
 
 print(mergeSort([1, 2, 7, 5, 2, 9, 3]))
+print(mergeSort2([1, 2, 7, 5, 2, 9, 3], 0, 6))
