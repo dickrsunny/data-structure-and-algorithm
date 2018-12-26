@@ -28,12 +28,12 @@ def sum(binary_tree):
 def pre_order_traverse(binary_tree):
     if binary_tree == None:
         return
-    print binary_tree.elem
+    print(binary_tree.elem)
     pre_order_traverse(binary_tree.left)
     pre_order_traverse(binary_tree.right)
 
 
-from exceptions import ValueError
+# from exceptions import ValueError
 
 class UnderFlow(ValueError):
     pass
@@ -66,7 +66,7 @@ def pre_order_traverse_non_recursively(binary_tree):
     s = Stack()
     while binary_tree or not s.is_empty():
         while binary_tree:
-            print binary_tree.elem
+            print(binary_tree.elem)
             s.push(binary_tree.right)
             binary_tree = binary_tree.left
         binary_tree = s.pop()
@@ -77,7 +77,7 @@ def in_order_traverse(binary_tree):
     if binary_tree == None:
         return
     in_order_traverse(binary_tree.left)
-    print binary_tree.elem
+    print(binary_tree.elem)
     in_order_traverse(binary_tree.right)
 
 
@@ -88,7 +88,7 @@ def in_order_traverse_non_recursively(binary_tree):
             s.push(binary_tree)
             binary_tree = binary_tree.left
         binary_tree = s.pop()
-        print binary_tree.elem
+        print(binary_tree.elem)
         binary_tree = binary_tree.right
 
 
@@ -98,7 +98,7 @@ def post_order_traverse(binary_tree):
         return
     post_order_traverse(binary_tree.left)
     post_order_traverse(binary_tree.right)
-    print binary_tree.elem
+    print(binary_tree.elem)
 
 
 def post_order_traverse_non_recursively(binary_tree):
@@ -109,7 +109,7 @@ def post_order_traverse_non_recursively(binary_tree):
             binary_tree = binary_tree.left if binary_tree else binary_tree.right
 
         binary_tree = s.pop()
-        print binary_tree.elem
+        print(binary_tree.elem)
         if not s.is_empty() and s.top().left == binary_tree:
             binary_tree = s.top().right
         else:
@@ -167,7 +167,7 @@ def level_order_traverse(binary_tree):
     q.enqueue(binary_tree)
     while not q.is_empty():
         t = q.dequeue()
-        print t.elem
+        print(t.elem)
         if t.left != None:
             q.enqueue(t.left)
         if t.right != None:
@@ -222,11 +222,11 @@ binary_tree = Node(1, Node(2, Node(4), Node(5)), Node(3, Node(6), Node(7)))
 binary_tree2 = Node(1, Node(2, Node(4), Node(5)), Node(3, Node(6), Node(7)))
 # print count(binary_tree)
 # print sum(binary_tree)
-# pre_order_traverse_non_recursively(binary_tree)
+pre_order_traverse_non_recursively(binary_tree)
 # in_order_traverse_non_recursively(binary_tree)
 # back_order_traverse_non_recursively(binary_tree)
 # level_order_traverse(binary_tree)
 # print max_depth(binary_tree)
-print is_same_tree(binary_tree, binary_tree2)
+# print is_same_tree(binary_tree, binary_tree2)
 # binary_tree3 = rebuild2([4, 2, 5, 1, 6, 3, 7], [4, 5, 2, 6, 7, 3, 1])
 # pre_order_traverse(binary_tree3)
