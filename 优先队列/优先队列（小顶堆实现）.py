@@ -1,4 +1,4 @@
-#coding: utf-8
+# coding: utf-8
 """
 from exceptions import Exception
 
@@ -116,7 +116,7 @@ class PriorityQueue(object):
 
     def heapify(self):
         half = len(self.elems) // 2 - 1
-        for i in xrange(half, -1, -1):
+        for i in range(half, -1, -1):
             self.sift_down(i)
 
     def sift_down(self, root_site):
@@ -137,7 +137,7 @@ class PriorityQueue(object):
 
     def dequeue(self):
         if self.is_empty:
-            raise ValueError
+            raise ValueError()
 
         elem = self.elems[0]
         self.elems[0], self.elems[-1] = self.elems[-1], self.elems[0]
@@ -161,8 +161,7 @@ class PriorityQueue(object):
 
 # q = PriorityQueue([6, 5, 7, 2, 9, 3, 1])
 q = PriorityQueue([6, 5, 7, 2, 9, 3])
-print q.elems
+print(q.elems)
 # p.dequeue()
 q.enqueue(10)
-print q.elems
-
+print(q.elems)
