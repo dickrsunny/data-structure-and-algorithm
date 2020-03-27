@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
 https://leetcode.com/problems/palindrome-linked-list/
 题目描述：
@@ -34,10 +32,10 @@ class Solution:
             return True
 
         prev = None
-        slow, fast = head, head
+        slow = fast = head
 
         while fast and fast.next:
-            fast = fast.next.next
+            fast = fast.next.next  # 此行和下面的语句位置不能互换，因为修改slow的同时会修改fast
             next_ = slow.next
             slow.next = prev
             prev = slow
