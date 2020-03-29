@@ -1,19 +1,18 @@
-#coding: utf-8
 
-
-def selectionSort(alist):
-    if not alist or len(alist) == 1:
+def selectionSort(a):
+    if not a or len(a) == 1:
         return
 
-    length = len(alist)
+    length = len(a)
     # 依次遍历数组中的元素，在剩余的元素中找比自己小的元素，若找到，则交换值，否则和自身交换
-    for i in xrange(length - 1):
+    for i in range(length - 1):
         min_site = i
-        for j in xrange(i + 1, length):
-            if alist[j] < alist[min_site]:
+        for j in range(i + 1, length):
+            if a[min_site] > a[j]:
                 min_site = j
-        alist[i], alist[min_site] = alist[min_site], alist[i]
-    return alist
+        a[i], a[min_site] = a[min_site], a[i]
+
+    return a
 
 
 print(selectionSort([10, 2, 7, 5, 2, 9, 3]))
