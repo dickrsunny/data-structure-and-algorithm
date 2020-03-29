@@ -1,15 +1,20 @@
-#coding: utf-8
 
-def insertSort(A, n):
-    if not A or n == 1:
-        return A
+def insertSort(a, n):
+    if not a or n == 1:
+        return a
 
-    # 比较当前数和前一个数的大小，如果前一个数大于当前数，就交换位置
-    for i in xrange(1, n):
+    # 从第二个数开始比较当前数和前一个数的大小，
+    # 如果前一个数大于当前数，就将前面的数向后挪，
+    # 找到位置之后，直接插入。
+    for i in range(1, n):
+        val = a[i]
         j = i
-        while j > 0 and A[j] < A[j - 1]:
-            A[j], A[j - 1] = A[j - 1], A[j]
+        while j > 0 and a[j-1] > val:
+            a[j] = a[j-1]
             j -= 1
-    return A
 
-print insertSort([1, 2, 7, 5, 2, 9, 3], 7)
+        a[j] = val
+    return a
+
+
+print(insertSort([1, 2, 7, 5, 2, 9, 3], 7))
