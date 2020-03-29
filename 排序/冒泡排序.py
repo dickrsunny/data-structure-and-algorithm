@@ -1,15 +1,18 @@
-def bubbleSort(alist):
-    if not alist or len(alist) == 1:
-        return alist
+def bubbleSort(l):
+    if not l or len(l) == 1:
+        return l
 
-    length = len(alist)
-    for passnum in xrange(length - 1, 0, -1):
-        for i in xrange(passnum):
-            if alist[i] > alist[i + 1]:
-                temp = alist[i]
-                alist[i] = alist[i + 1]
-                alist[i + 1] = temp
-    return alist
+    length = len(l)
+    for i in range(length):
+        j = 0
+        while (j < length - i - 1):
+            if l[j] > l[j+1]:
+                temp = l[j]
+                l[j] = l[j+1]
+                l[j+1] = temp
+            j += 1
+
+    return l
 
 
 print(bubbleSort([1, 2, 7, 5, 2, 9, 3]))
