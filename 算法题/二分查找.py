@@ -1,4 +1,3 @@
-#coding: utf-8
 
 """
 最坏时间复杂度	O(log n)
@@ -8,33 +7,35 @@
 
 """
 
+
 def binary_search(list_, elem):
     length = len(list_)
-    left, right = 0, length - 1
-    while left <= right:
-        mid = left + (right - left) // 2
+    low, high = 0, length - 1
+
+    while low <= high:
+        mid = low + (high - low) // 2
         if elem == list_[mid]:
             return mid
         elif elem > list_[mid]:
-            left = mid + 1
+            low = mid + 1
         else:
-            right = mid - 1
-    return 'not found'
+            high = mid - 1
+
+    return -1
 
 
-def binary_search_recursively(list_, elem, left, right):
-    if left > right:
-        return 'not found'
+def binary_search_recursively(list_, elem, low, high):
+    if low > high:
+        return -1
 
-    mid = left + (right - left) // 2
+    mid = low + (high - low) // 2
     if elem == list_[mid]:
         return mid
     elif elem > list_[mid]:
-        return binary_search_recursively(list_, elem, mid + 1, right)
+        return binary_search_recursively(list_, elem, mid + 1, high)
     else:
-        return binary_search_recursively(list_, elem, left, mid - 1)
+        return binary_search_recursively(list_, elem, low, mid - 1)
 
 
-print binary_search([1, 3, 4, 6, 7, 8, 10, 13, 14], 6)
-# print binary_search_recursively([1, 3, 4, 6, 7, 8, 10, 13, 14], 6, 0, 8)
-
+print(binary_search([1, 3, 4, 6, 7, 8, 10, 13, 14], 6))
+# print(binary_search_recursively([1, 3, 4, 6, 7, 8, 10, 13, 14], 6, 0, 8))
