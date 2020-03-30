@@ -64,7 +64,7 @@ def bsearch3(a, n, value):
         return -1
 
 
-# 变体四：查找第一个值小于等于给定值的元素
+# 变体四：查找最后一个值小于等于给定值的元素
 
 def bsearch4(a, n, value):
     if not a:
