@@ -1,78 +1,69 @@
-# coding: utf-8
-
 
 class Solution:
-
-    def partition(self, _list, low, high):
+    def partition(self, a, low, high):
         i, j = low, high
-        v = _list[low]
+        v = a[low]
         while True:
             # 向右遍历，比v大就退出循环
             while True:
                 i += 1
-                if v < _list[i] or i == high:
+                if a[i] > v or i == high:
                     break
             # 向左遍历，比v小就退出循环
             while True:
-                if v > _list[j] or j == low:
+                if a[j] < v or j == low:
                     break
                 j -= 1
 
             if i >= j:
                 break
 
-            _list[i], _list[j] = _list[j], _list[i]
+            a[i], a[j] = a[j], a[i]
 
-        _list[low], _list[j] = _list[j], _list[low]
+        a[low], a[j] = a[j], a[low]
 
         return j
 
-    def sort(self, _list, low, high):
-        if high <= low:
+    def sort(self, a, low, high):
+        if low >= high:
             return
 
-        j = self.partition(_list, low, high)
-        self.sort(_list, low, j - 1)
-        self.sort(_list, j + 1, high)
+        j = self.partition(a, low, high)
+        self.sort(a, low, j - 1)
+        self.sort(a, j + 1, high)
 
     # 普通无大量重复元素
-    def quick_sort(self, _list):
-        if not _list or len(_list) == 1:
-            return
-
-        self.sort(_list, 0, len(_list) - 1)
-        return _list
+    def quick_sort(self, a):
+        self.sort(a, 0, len(a) - 1)
+        return a
 
     ####################################
 
-    def sort2(self, _list, low, high):
+    def sort2(self, a, low, high):
         if high <= low:
             return
 
         lt, i, gt = low, low + 1, high
-        v = _list[low]
+        v = a[low]
         while i <= gt:
-            if _list[i] < v:
-                _list[i], _list[lt] = _list[lt], _list[i]
+            if a[i] < v:
+                a[i], a[lt] = a[lt], a[i]
                 i += 1
                 lt += 1
 
-            elif _list[i] > v:
-                _list[i], _list[gt] = _list[gt], _list[i]
+            elif a[i] > v:
+                a[i], a[gt] = a[gt], a[i]
                 gt -= 1
 
             else:
                 i += 1
-        self.sort2(_list, low, lt - 1)
-        self.sort2(_list, gt + 1, high)
+        self.sort2(a, low, lt - 1)
+        self.sort2(a, gt + 1, high)
 
     # 大量重复元素
-    def quick_sort2(self, _list):
-        if not _list or len(_list) == 1:
-            return
-
-        self.sort2(_list, 0, len(_list) - 1)
-        return _list
+    def quick_sort2(self, a):
+        self.sort2(a, 0, len(a) - 1)
+        return a
 
 
 s = Solution()
