@@ -83,3 +83,6 @@ def bsearch4(a, n, value):
         return low - 1
     else:
         return -1
+
+
+print(bsearch4([3, 5, 6, 8, 9, 10], 6, 7))
