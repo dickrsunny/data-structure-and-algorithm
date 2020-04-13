@@ -1,5 +1,3 @@
-#coding: utf-8
-
 class BinaryTreeNode(object):
 
     def __init__(self, elem, left=None, right=None):
@@ -9,9 +7,6 @@ class BinaryTreeNode(object):
 
     def __lt__(self, other):
         return self.elem < other.elem
-
-
-from exceptions import Exception
 
 
 class UnderFlow(Exception):
@@ -34,7 +29,7 @@ class PriorityQueue(object):
             # self.sift_down_recursively(length, i)
 
     def is_empty(self):
-        return self.elems == None
+        return self.elems is None
 
     def number(self):
         return len(self.elems)
@@ -107,6 +102,4 @@ def HaffmanTree(weights):
 
 
 ht = HaffmanTree([2, 3, 7, 10, 4, 2, 5])
-print pre_order_traverse(ht, '', {})
-
-
+print(pre_order_traverse(ht, '', {}))

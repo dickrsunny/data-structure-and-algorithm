@@ -1,11 +1,11 @@
-
 from collections import deque
 from queue import Queue
 
 
 class Graph:
     """
-        采用邻接表的无向图 
+        无向图
+        采用邻接表实现
         采用deque（双链表）作为单链表存储相邻节点
     """
     def __init__(self, vertices):
@@ -25,19 +25,26 @@ class Graph:
         res.append(str(v2))
         return res
 
+    @property
+    def _vertice_num(self):
+        """ 顶点数目 """
+        return self.vertices
+
     def bfs(self, v1, v2):
         """ 广度优先遍历 """
+        if v1 == v2:
+            return
 
         # 使用队列存储相邻顶点
         q = Queue()
         q.put(v1)
 
         # 标记顶点是否访问过
-        visited = [False] * self.vertices
+        visited = [False] * self._vertice_num
         visited[v1] = True
 
         # 记录当前顶点的前一个顶点
-        prev = [-1] * self.vertices
+        prev = [-1] * self._vertice_num
 
         while not q.empty():
             current_v = q.get()
@@ -55,17 +62,19 @@ class Graph:
 
     def dfs(self, v1, v2):
         """ 深度优先遍历 """
+        if v1 == v2:
+            return
 
         # 标记顶点是否访问过
-        visited = [False] * self.vertices
+        visited = [False] * self._vertice_num
         visited[v1] = True
 
         # 记录当前顶点的前一个顶点
-        prev = [-1] * self.vertices
+        prev = [-1] * self._vertice_num
 
         self.found = False
 
-        def recur_dfs(v1, v2):
+        def recursive(v1, v2):
             """ 递归查找 """
             if self.found:
                 return
@@ -79,9 +88,9 @@ class Graph:
             for v in self.adj[v1]:
                 if not visited[v]:
                     prev[v] = v1
-                    recur_dfs(v, v2)
+                    recursive(v, v2)
 
-        recur_dfs(v1, v2)
+        recursive(v1, v2)
 
         res = self._generate_path(v1, v2, prev, [])
         print("->".join(res))
