@@ -67,11 +67,11 @@ class PriorityQueue(object):
         while True:
             left_child = root_site * 2 + 1
             right_child = root_site * 2 + 2
-            if left_child < length and self.elems[left_child] < self.elems[root_site]:
-                self.elems[root_site], self.elems[left_child] = self.elems[left_child], self.elems[root_site]
+            if left_child < length and self.elems[left_child] < self.elems[root_site]:  # noqa
+                self.elems[root_site], self.elems[left_child] = self.elems[left_child], self.elems[root_site]  # noqa
                 root_site = left_child
-            elif right_child < length and self.elems[right_child] < self.elems[root_site]:
-                self.elems[root_site], self.elems[right_child] = self.elems[right_child], self.elems[root_site]
+            elif right_child < length and self.elems[right_child] < self.elems[root_site]:  # noqa
+                self.elems[root_site], self.elems[right_child] = self.elems[right_child], self.elems[root_site]  # noqa
                 root_site = right_child
             else:
                 break

@@ -1,4 +1,3 @@
-#coding: utf-8
 
 class Node(object):
 
@@ -10,14 +9,14 @@ class Node(object):
 
 # 统计二叉树节点数量
 def count(binary_tree):
-    if binary_tree == None:
+    if binary_tree is None:
         return 0
     return 1 + count(binary_tree.left) + count(binary_tree.right)
 
 
 # 二叉树节点元素之和
 def sum(binary_tree):
-    if binary_tree == None:
+    if binary_tree is None:
         return 0
     return binary_tree.elem + sum(binary_tree.left) + sum(binary_tree.right)
 
@@ -26,7 +25,7 @@ def sum(binary_tree):
 
 # 先序遍历
 def pre_order_traverse(binary_tree):
-    if binary_tree == None:
+    if binary_tree is None:
         return
     print(binary_tree.elem)
     pre_order_traverse(binary_tree.left)
@@ -37,6 +36,7 @@ def pre_order_traverse(binary_tree):
 
 class UnderFlow(ValueError):
     pass
+
 
 class Stack(object):
 
@@ -74,7 +74,7 @@ def pre_order_traverse_non_recursively(binary_tree):
 
 # 中序遍历
 def in_order_traverse(binary_tree):
-    if binary_tree == None:
+    if binary_tree is None:
         return
     in_order_traverse(binary_tree.left)
     print(binary_tree.elem)
@@ -94,7 +94,7 @@ def in_order_traverse_non_recursively(binary_tree):
 
 # 后续遍历
 def post_order_traverse(binary_tree):
-    if binary_tree == None:
+    if binary_tree is None:
         return
     post_order_traverse(binary_tree.left)
     post_order_traverse(binary_tree.right)
@@ -106,7 +106,7 @@ def post_order_traverse_non_recursively(binary_tree):
     while binary_tree or not s.is_empty():
         while binary_tree:
             s.push(binary_tree)
-            binary_tree = binary_tree.left if binary_tree else binary_tree.right
+            binary_tree = binary_tree.left if binary_tree else binary_tree.right  # noqa
 
         binary_tree = s.pop()
         print(binary_tree.elem)
@@ -118,8 +118,6 @@ def post_order_traverse_non_recursively(binary_tree):
 
 # 广度遍历
 def level_order_traverse(binary_tree):
-
-    from exceptions import Exception
 
     class UnderFlow(Exception):
         pass
@@ -168,31 +166,33 @@ def level_order_traverse(binary_tree):
     while not q.is_empty():
         t = q.dequeue()
         print(t.elem)
-        if t.left != None:
+        if t.left is not None:
             q.enqueue(t.left)
-        if t.right != None:
+        if t.right is not None:
             q.enqueue(t.right)
 
 
 # 最大树深
 def max_depth(binary_tree):
-    if binary_tree == None:
+    if binary_tree is None:
         return 0
     return max(max_depth(binary_tree.left), max_depth(binary_tree.right)) + 1
 
 
 # 两棵树是否相同
 def is_same_tree(bt1, bt2):
-    if bt1 == None and bt2 == None:
+    if bt1 is None and bt2 is None:
         return True
     elif bt1 and bt2:
-        return bt1.elem == bt2.elem and is_same_tree(bt1.left, bt2.left) and is_same_tree(bt1.right, bt2.right)
+        return bt1.elem == bt2.elem and is_same_tree(bt1.left, bt2.left) and is_same_tree(bt1.right, bt2.right)  # noqa
     else:
         return False
+
 
 """
 由前序和中序遍历、由中序和后序遍历序列可以唯一确定一棵二叉树，而由前序和后序遍历序列不能唯一确定一棵二叉树
 """
+
 
 # 已知先序、中序求后序遍历
 def rebuild(pre_order, in_order):
@@ -216,17 +216,16 @@ def rebuild2(in_order, post_order):
     return root
 
 
-
 binary_tree = Node(1, Node(2, Node(4), Node(5)), Node(3, Node(6), Node(7)))
 # binary_tree = None
 binary_tree2 = Node(1, Node(2, Node(4), Node(5)), Node(3, Node(6), Node(7)))
-# print count(binary_tree)
-# print sum(binary_tree)
+# print(count(binary_tree))
+# print(sum(binary_tree)))
 pre_order_traverse_non_recursively(binary_tree)
 # in_order_traverse_non_recursively(binary_tree)
 # back_order_traverse_non_recursively(binary_tree)
 # level_order_traverse(binary_tree)
-# print max_depth(binary_tree)
+# print(max_depth(binary_tree))
 # print is_same_tree(binary_tree, binary_tree2)
 # binary_tree3 = rebuild2([4, 2, 5, 1, 6, 3, 7], [4, 5, 2, 6, 7, 3, 1])
 # pre_order_traverse(binary_tree3)

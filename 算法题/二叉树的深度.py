@@ -1,4 +1,3 @@
-# coding: utf-8
 
 class TreeNode:
     def __init__(self, x, left=None, right=None):
@@ -10,7 +9,7 @@ class TreeNode:
 class Solution(object):
     def tree_depth(self, pRoot):
 
-        if pRoot == None:
+        if pRoot is None:
             return 0
 
         class Node(object):
@@ -25,7 +24,7 @@ class Solution(object):
 
             @property
             def is_empty(self):
-                return self.rear == None
+                return self.rear is None
 
             def push(self, val):
                 node = Node(val)
@@ -81,15 +80,13 @@ class Solution(object):
                 count = 0
         return depth
 
-
     def TreeDepthRecursively(self, pRoot):
-        # write code here
-        if pRoot == None:
+        if pRoot is None:
             return 0
 
-        return max(self.TreeDepthRecursively(pRoot.left), self.TreeDepthRecursively(pRoot.right)) + 1
+        return max(self.TreeDepthRecursively(pRoot.left), self.TreeDepthRecursively(pRoot.right)) + 1  # noqa
 
 
 t = TreeNode(1, TreeNode(2, TreeNode(4)), TreeNode(3))
 s = Solution()
-print s.tree_depth(t)
+print(s.tree_depth(t))
