@@ -79,7 +79,7 @@ class PriorityQueue(object):
 
 # 打印哈夫曼树编码
 def pre_order_traverse(binary_tree, code, char_freq):
-    if binary_tree.left == None or binary_tree.right == None:
+    if binary_tree.left is None or binary_tree.right is None:
         char_freq[code] = binary_tree.elem
         return
 
